@@ -1,0 +1,20 @@
+Since $f_r$ and $f_\ell$ appear in the equations as either $f_r+f_\ell$ or $d(f_r-f_\ell)$, it is easier to think of the inputs as the total force $F\defeq f_r+f_\ell$, and the torque $\tau=d(f_r-f_\ell)$.  Note that since
+\[
+\begin{pmatrix} F \\ \tau \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ d & -d \end{pmatrix}\begin{pmatrix} f_r \\ f_\ell \end{pmatrix},
+\]
+that
+\[
+\begin{pmatrix} f_r \\ f_\ell \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ d & -d \end{pmatrix}^{-1}\begin{pmatrix} F \\ \tau \end{pmatrix}
+= \begin{pmatrix} \frac{1}{2} & \frac{1}{2d} \\ \frac{1}{2} & -\frac{1}{2d} \end{pmatrix} \begin{pmatrix} F \\ \tau \end{pmatrix}.
+\]
+Therefore, in subsequent exercises, if we determine $F$ and $\tau$, then the right and left forces are given by
+\begin{align*}
+f_r &= \frac{1}{2} F + \frac{1}{2d}\tau \\
+f_\ell &= \frac{1}{2}F - \frac{1}{2d}\tau.
+\end{align*}
+    \begin{description}
+    \item[(a)] Find the equilibria of the system.
+    \item[(b)] Linearize the equations about the equilibria using Jacobian linearization.    
+    \item[(c)] If possible, linearize the system using feedback linearization.
+    \end{description}
+

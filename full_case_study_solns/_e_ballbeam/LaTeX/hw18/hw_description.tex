@@ -1,0 +1,11 @@
+For this homework assignment we will use the loopshaping design technique to design a successive loop closure controller for the ball and beam problem.
+\begin{itemize}
+	\item[(a)] First consider the inner loop, where $P_{in}(s)$ is the transfer function of the inner loop derived in HW~\ref{hw:ballbeam}.\ref{chap:transfer_function_models}.  Design the inner control system $C_{in}(s)$ to stabilize the system with a phase margin close to 60~degrees, and to ensure that reference inputs with frequency below $\omega_r=1$~radians/sec have tracking error $\gamma_r=0.0032$, and to ensure that noise above $\omega_n=1000$~radians/second is rejected by $\gamma_n=0.0032$.  
+	\item[(b)] Now consider the design of the controller for the outer loop system.  The 'plant' for the design of the outer loop controller is
+		\[
+		P = P_{out}\frac{P_{in}C_{in}}{1+P_{in}C_{in}}.
+		\]
+		Design the outer loop controller $C_{out}$ so that the system is stable with phase margin close to $PM=60$~degrees, and so that constant input disturbances are rejected, reference signals with frequency below $\omega_r=0.1$~radians/sec are tracked with error $\gamma_r=0.01$, and noise with frequency content above $\omega_n=100$~radians/sec are rejected with $\gamma_n=0.001$.
+		Add a prefilter $F(s)$ to reduce peaking in the closed loop transfer function.
+	\item[(c)]  Implement the developed control strategy in simulation using the state space equivalents of $C(s)$ and $F(s)$.
+\end{itemize}

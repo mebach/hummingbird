@@ -1,0 +1,118 @@
+
+\begin{description}
+\item[Step 1.]
+The original state space equations are 
+\begin{align}
+	\dot{x} &= \begin{pmatrix}
+		0 &        0 &   1.0000 &        0 \\
+		0 &        0 &        0 &   1.0000 \\
+		0 &  -1.7294 &   -0.0471 &        0 \\
+		0 &  34.5882 &   0.1412 &        0 \\
+	\end{pmatrix} x + \begin{pmatrix}
+		0 \\
+		0 \\
+		0.9412 \\
+		-2.8235 \\
+	\end{pmatrix} u \notag \\
+	y &= \begin{pmatrix}
+		1 & 0 & 0 & 0 \\
+		0 & 1 & 0 & 0 
+	\end{pmatrix} x, \label{eq:hw_state_feedback_b1_1}
+\end{align}
+The integrator will only be on $z=x_1$, therefore 
+\[
+C_r = \begin{pmatrix} 1 & 0 & 0 & 0 \end{pmatrix}.
+\]
+The augmented system is therefore
+\begin{align*}
+A_1 &= \begin{pmatrix} A & \mathbf{0} \\ -C_r & \mathbf{0} \end{pmatrix} \\ &= \begin{pmatrix} 
+         0 &        0 &   1.0000 &        0  &       0 \\
+         0 &        0 &        0 &   1.0000  &       0 \\ 
+         0 &  -1.7294 &  -0.0471 &        0  &       0 \\
+         0 &  34.5882 &    0.1412 &        0  &       0 \\
+    -1.0000 &        0 &        0 &        0  &       0
+\end{pmatrix} \\
+B_1 &= \begin{pmatrix} B \\ \mathbf{0} \end{pmatrix} = \begin{pmatrix} 
+0   \\      0  \\  0.9412 \\  -2.8235   \\      0 
+\end{pmatrix}
+\end{align*}
+
+\item[Step 2.] 
+After the design in HW~\ref{ds:pendulum}.\ref{chap:state-feedback}, the closed loop poles were located at $p_{1,2} = -1.4140 \pm j1.4144$, $p_{3,4}=  -0.8000 \pm j 0.6000$.
+We will add the integrator pole at $p_I=-10$.
+The new controllability matrix
+\begin{align*}
+\mathcal{C}_{A_1,B_1} &= [B_1, A_1B_1, A_1^2B_1, A_1^3B_1, A_1^4B_1] \\
+&= \begin{pmatrix} 
+         0     0.94118 & -0.044291 &   4.8851 & -0.45968 \\
+        0 &   -2.8235 &   0.13287 &  -97.667 &   5.2855 \\
+    0.94118 & -0.044291 &    4.8851 & -0.45968 &   168.93 \\
+   -2.8235 &   0.13287 &   -97.667 &   5.2855 &  -3378.2 \\
+        0 &         0 &  -0.94118 & 0.044291 &  -4.8851
+         \end{pmatrix}.
+\end{align*}
+The determinant is nonzero, therefore the system is controllable.  
+
+The open loop characteristic polynomial
+\begin{align*}
+\Delta_{ol}(s)&=\text{det}(sI-A_1) \\
+ &= \text{det} \begin{pmatrix} 
+        s &        0 &   -1 &        0  &       0 \\
+ 		0 &        s &        0 &   -1  &       0 \\ 
+ 		0 &  1.7294 &  s+0.0471 &        0  &       0 \\
+ 		0 &  -34.588 &   -0.14118 &        s  &       0 \\
+ 		1 &        0 &        0 &        0  &       s
+	\end{pmatrix} \\
+&= s^5 + 0.0471s^4 -34.588s^3 - 1.3835s^2,
+\end{align*}
+which implies that
+\begin{align*}
+\mathbf{a}_{A_1} &= \begin{pmatrix}0.0471, & -34.588, & 1.3835,  &      0,  &       0\end{pmatrix} \\
+\mathcal{A}_{A_1} &= \begin{pmatrix} 
+1 & 0.0471 & -34.588 &   -1.3835 & 0 \\ 
+0 & 1 & 0.0471 & -34.588 &   -1.3835 \\ 
+0 & 0 & 1 & 0.0471 & -34.588 \\
+0 & 0 & 0 & 1 & 0.0471 \\
+0 & 0 & 0 & 0 & 1
+\end{pmatrix}.
+\end{align*}
+
+The desired closed loop polynomial
+\begin{align*}
+\Delta_{cl}^d(s) &= (s+1.0369-j1.0372)(s+1.0369+j1.0372)\dots \\
+&\quad
+(s+3.1108-j3.1117)(s+3.1108+j3.1117)
+(s+2) \\          
+&=s^5+10.2955s^4+51.0048s^3+122.3612s^2\\ &\qquad +148.7123s+83.2910,
+\end{align*}
+which implies that
+{\small
+\[
+\boldsymbol{\alpha} = \begin{pmatrix}   10.2955, &   51.0048, &  122.3612, &  148.7123, & 83.2910 \end{pmatrix}.
+\]
+}
+
+The augmented gains are therefore given as
+\begin{align*}
+K_1 &= (\boldsymbol{\alpha}-\mathbf{a}_{A_1})\mathcal{A}_{A_1}^{-1}\mathcal{C}_{A_1,B_1}^{-1} \\
+  &= \begin{pmatrix} -5.3744, &  -32.1057, &   -4.5745, &   -5.1545, &    3.0101\end{pmatrix}
+\end{align*}
+
+\item[Step 3.]
+The feedback gains are therefore given by
+\begin{align*}
+K &= K_1(1:4) = \begin{pmatrix} -5.3744, &  -32.1057, &   -4.5745, &   -5.1545 \end{pmatrix} \\
+k_I &= K_1(5) = 3.0101
+\end{align*}
+
+\end{description}
+
+
+A Python class that implements a state feedback controller with integrator for the inverted is shown below.
+\lstinputlisting[language=Python, caption=pendulumController.py]{../control_book_public_solutions/_B_pendulum/python/hw12/pendulumController.py}
+
+The gains are computed with the following Python script.
+\lstinputlisting[language=Matlab, caption=pendulumParamHW12.py]{../control_book_public_solutions/_B_pendulum/python/hw12/pendulumParamHW12.py}
+
+Complete simulation code for Matlab, Python, and Simulink can be downloaded at \controlbookurl{http://controlbook.byu.edu}.
+

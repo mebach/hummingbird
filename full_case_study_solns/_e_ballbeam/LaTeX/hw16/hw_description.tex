@@ -1,0 +1,14 @@
+
+For the inner loop of the ball \& beam system, use the Matlab \texttt{bode} command to create a graph that simultaneously displays the Bode plots for (1) the plant, and (2) the plant under PD control,  using the control gains calculated in Homework~\ref{hw:ballbeam}.\ref{chap:PID-design-specs}.  Use the dirty derivative when implementing the derivative portion of the PD control.
+\begin{description}
+\item[(a)]  To what percent error can the closed loop system under PD control track the desired input if all of the frequency content of $\theta_r(t)$ is below $\omega_r = 1.0$~radians per second?
+\item[(b)] If the frequency content of the input disturbance is all contained below $\omega_{d_{in}}=0.8$ radians per second, what percentage of the input disturbance shows up in the output?
+\item[(c)] If all of the frequency content of the noise $n(t)$ is greater than $\omega_{no} = 300$ radians per second, what percentage of the noise shows up in the output signal $\theta$?
+\end{description}
+
+For the outer loop of the ball \& beam, use the Matlab \texttt{bode} command to create a graph that simultaneously displays the Bode plots for (1) the plant, and (2) the plant under PID control using the control gains calculated in Homework~\ref{hw:ballbeam}.\ref{chap:PID-digital-implementation}.  Use the dirty derivative when implementing the derivative portion of the PID control.  
+\begin{description}
+\item[(d)]  If the frequency content of an output disturbance is contained below $\omega_{d_{out}}=0.1$ radian/sec, what percentage of the output disturbance will be contained in the output under PID control?  
+\item[(e)] If the reference signal is $y_r(t) = 2\sin(0.6 t)$ what is the output error under PID control?
+\end{description}
+

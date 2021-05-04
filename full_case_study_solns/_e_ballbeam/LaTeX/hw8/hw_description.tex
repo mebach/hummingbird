@@ -1,0 +1,10 @@
+For the ball and beam problem, do the following:
+\begin{description}
+\item[(a)] Using the principle of successive loop closure, draw a block diagram that uses PD control for both inner loop control and outer loop control. For design purposes, let the equilibrium position for the ball be $z_e=\frac{\ell}{2}$.  The input to the outer loop controller is the desired ball position $z_r$ and the output of the controller is the desired beam angle $\tilde{\theta}_r$.  The input to the inner loop controller is the desired beam angle $\tilde{\theta}_r$ and the output is the force $\tilde{F}$ on the end of the beam.
+\item[(b)] Focusing on the inner loop, find the PD gains $k_{P_\theta}$ and $k_{D_\theta}$ so that the rise time of the inner loop is $t_{r_\theta}=1$~second, and the damping ratio is $\zeta_{\theta}=0.707$.
+\item[(c)] Find the DC gain $k_{DC_\theta}$ of the inner loop.
+\item[(d)] Replacing the inner loop by its DC-gain, find the PD gains $k_{P_z}$ and $k_{D_z}$ so that the rise time of the outer loop is $t_{r_z}=10 t_{r_\theta}$ and the damping ratio is $\zeta_z=0.707$.
+\item[(e)] Implement the successive loop closure design for the ball and beam in simulation where the commanded ball position is given by a square wave with magnitude $0.25\pm 0.15$~meters and frequency $0.01$~Hz.  Use the actual position in the ball as a feedback linearizing term for the equilibrium force.  
+\item[(f)] Suppose that the size of the input force on the beam is limited to $F_{\max}=15$~N.  Modify the simulation to include a saturation block on the force $F$.  Using the rise time of the outer loop, tune the PD control law to get the fastest possible response without input saturation when a step of size $0.25$~meter is placed on $\tilde{z}^r$. 
+\end{description}
+

@@ -1,0 +1,43 @@
+%\includepdf[pages=-,scale=.8,pagecommand={}]{notes_soln_g7.pdf}
+
+The longitudinal equations of motion are
+\[
+(m_c+2m_r)\ddot{\tilde{h}} = \tilde{F},
+\]
+which implies that
+\[
+\ddot{\tilde{h}} = \left(\frac{1}{m_c+2m_r}\right)\tilde{F}.
+\]
+Let $\tilde{x}_{lon} = (\tilde{h}, \dot{\tilde{h}})^{\top} \defeq (\tilde{x}_1, \tilde{x}_2)^{\top}$ and $\tilde{u}=\tilde{F}$ and $\tilde{y}=\tilde{h}$, then
+\[
+\dot{\tilde{x}}_{lon} = \begin{pmatrix} \dot{\tilde{x}}_1 \\ \dot{\tilde{x}}_2 \end{pmatrix} = \begin{pmatrix} \dot{\tilde{h}} \\ \ddot{\tilde{h}} \end{pmatrix} = \begin{pmatrix} \tilde{x}_2 \\ \left(\frac{1}{m_c+2m_r}\right)\tilde{F} \end{pmatrix} = \begin{pmatrix} \tilde{x}_2 \\ \left(\frac{1}{m_c+2m_r}\right)\tilde{u} \end{pmatrix}.
+\]
+Therefore, the state space equations are
+\begin{align*}
+\dot{\tilde{x}}_{lon} &= \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} \tilde{x}_{lon} + \begin{pmatrix} 0 \\ \frac{1}{m_c+2m_r}\end{pmatrix} \tilde{u} \\
+\tilde{y} &= \begin{pmatrix} 1 & 0 \end{pmatrix} \tilde{x}_{lon}  + 0 \tilde{u}.
+\end{align*}
+
+The lateral equations of motion are
+\begin{align*}
+(m_c+2m_r)\ddot{\tilde{z}} &= -F_e\tilde{\theta} - \mu\dot{\tilde{z}} \\
+(J_c+2m_rd^2)\ddot{\tilde{\theta}} &= \tilde{\tau}.
+\end{align*}
+Solving for the highest order derivatives on the left hand side gives
+which implies that
+\begin{align*}
+\ddot{\tilde{z}} &= -\left(\frac{F_e}{m_c+2m_r}\right)\tilde{\theta} - \left(\frac{\mu}{m_c+2m_r}\right)\dot{\tilde{z}} \\
+\ddot{\tilde{\theta}} &= \left(\frac{1}{J_c+2m_rd^2}\right)\tilde{\tau}.
+\end{align*}
+
+Let $\tilde{x}_{lat} = (\tilde{z}, \tilde{\theta}, \dot{\tilde{z}}, \dot{\tilde{\theta}})^{\top} \defeq (\tilde{x}_1, \tilde{x}_2, \tilde{x}_3, \tilde{x}_4)^{\top}$ and $\tilde{u}=\tilde{\tau}$ and $\tilde{y}=(\tilde{z},\tilde{\theta})^{\top}$, then
+\[
+\dot{\tilde{x}}_{lat} = \begin{pmatrix} \dot{\tilde{x}}_1 \\ \dot{\tilde{x}}_2 \\ \dot{\tilde{x}}_3 \\ \dot{\tilde{x}}_4 \end{pmatrix} 
+	= \begin{pmatrix} \tilde{x}_3 \\ \tilde{x}_4 \\ -\left(\frac{F_e}{m_c+2m_r}\right)\tilde{x}_2 - \left(\frac{\mu}{m_c+2m_r}\right)\tilde{x}_3 \\ \left(\frac{1}{J_c+2m_rd^2}\right) \tilde{u} \end{pmatrix}.
+\]
+Therefore, the state space equations are
+\begin{align*}
+\dot{\tilde{x}}_{lat} &= \begin{pmatrix} 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 1 \\ 0 & \left(-\frac{F_e}{m_c+2m_r}\right) & \left(-\frac{\mu}{m_c+2m_r}\right) & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} \tilde{x}_{lat} + \begin{pmatrix} 0 \\ 0 \\ 0 \\ \left(\frac{1}{J_c+2m_rd^2}\right) \end{pmatrix} \tilde{u} \\
+\tilde{y} &= \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \end{pmatrix} \tilde{x}_{lat}  + \begin{pmatrix} 0 \\ 0 \end{pmatrix} \tilde{u}.
+\end{align*}
+

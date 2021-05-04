@@ -1,0 +1,21 @@
+For the altitude hold loop of the VTOL system, use the \texttt{bode} command (from Matlab or Python) to create a graph that simultaneously displays the Bode plots for (1) the plant, and (2) the plant under PID control using the control gains calculated in Homework~\ref{hw:vtol}.\ref{chap:PID-digital-implementation}.  Use the dirty derivative when implementing the derivative portion of the PID control. 
+ 
+\begin{description}
+\item[(a)]  What is the tracking error if the reference input is a parabola with curvature $5$?
+\item[(b)]  If all of the frequency content of the noise $n(t)$ is greater than $\omega_{no} = 30$ radians per second, what percentage of the noise shows up in the output signal $h$?
+\end{description}
+
+For the inner loop of the lateral controller for the VTOL system, use the \texttt{bode} command to create a graph that simultaneously displays the Bode plots for (1) the plant,  and (2) the plant under PD control,  using the control gains calculated in Homework~\ref{hw:vtol}.\ref{chap:PID-design-specs}.  Use the dirty derivative when implementing the derivative portion of the PD control.
+
+\begin{description}
+\item[(c)] If the frequency content of the input disturbance is all contained below $\omega_{d_{in}}=2$ radians per second, what percentage of the input disturbance shows up in the output?
+\item[(d)] If a sensor for $\theta$ is to be selected, what are the characteristics of the sensor (frequency band and size) that would result in measurement noise for $\theta$ that is less than $0.1$~degrees?
+\end{description}
+
+For the outer loop of the lateral controller for the VTOL system, use the \texttt{bode} command to create a graph that simultaneously displays the Bode plots for (1) the plant,  and (2) the plant under PID control,  using the control gains calculated in Homework~\ref{hw:vtol}.\ref{chap:PID-digital-implementation}. 
+
+\begin{description}
+\item[(e)]  To what percent error can the closed loop system track the desired input if all of the frequency content of $z_r(t)$ is below $\omega_r = 0.1$~radians per second?
+\item[(f)] If the frequency content of an output disturbance is contained below $\omega_{d_{out}}=0.01$ radian/sec, what percentage of the output disturbance will be contained in the output?
+\end{description}
+

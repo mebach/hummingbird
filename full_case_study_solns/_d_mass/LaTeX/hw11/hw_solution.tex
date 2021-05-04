@@ -1,0 +1,82 @@
+
+
+From HW~\ref{hw:mass}.\ref{chap:state_space_models}, the state space equations for the mass spring system are given by
+\begin{align*}
+\dot{x} &= \begin{pmatrix} 
+         0  &  1.0000 \\
+   -0.6000  & -0.1000 \end{pmatrix}x + \begin{pmatrix} 0 \\ 0.2 \end{pmatrix} u \\
+y &= \begin{pmatrix}1 & 0 \end{pmatrix}x.
+\end{align*}
+\begin{description}
+\item[Step 1.] 
+The controllability matrix is therefore
+\[
+\mathcal{C}_{A,B} = [B, AB] = \begin{pmatrix}           
+	0  &  0.2000 \\
+    0.2000 &  -0.0200 \end{pmatrix}.
+\]
+The determinant is $det(\mathcal{C}_{A,B})=-0.04\neq 0$, therefore the system is controllable.  
+\item[Step 2.] The open loop characteristic polynomial is
+\[
+\Delta_{ol}(s)=\text{det}(sI-A) = s^2 +0.1 s + 0.6,
+\]
+which implies that
+\begin{align*}
+\mathbf{a}_A &= (0.1, 0.6) \\
+\mathcal{A}_A &= \begin{pmatrix} 
+1 & 0.1 \\ 0 & 1
+\end{pmatrix}
+\end{align*}
+
+\item[Step 3.] When $\omega_n=1.1$ and $\zeta=0.7$, the desired closed loop polynomial is
+\[
+\Delta_{cl}^d(s) = s^2+2\zeta\omega_n s + \omega_n^2=s^2+1.54s+1.21       
+\]
+which implies that
+\[
+\boldsymbol{\alpha} = (1.54,    1.21).
+\]
+
+\item[Step 4.]
+The gains are therefore given as
+\begin{align*}
+K &= (\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1} \\
+  &= \begin{pmatrix} 3.05 &   7.20 \end{pmatrix}
+\end{align*}
+\begin{align*}
+k_r &= \frac{-1}{C(A-BK)^{-1}B} \\
+    &= 6.05.
+\end{align*}
+\end{description}
+
+Alternatively, we could have used the following Python script
+%\lstinputlisting{./6_design_studies/_D_mass/simulink/hw11/massParamHW11.m}
+%\lstinputlisting{../../simulink/hw11/massParamHW11.m}
+\ifsolutionmanual
+
+\lstinputlisting{./6_design_studies/_D_mass/python/hw11/massParamHW11.py}
+
+\else
+
+\lstinputlisting{../../python/hw11/massParamHW11.py}
+
+
+\fi
+
+
+The Python code for the controller is given by
+%\lstinputlisting{./6_design_studies/_D_mass/simulink/hw11/mass_ctrl.m}
+%\lstinputlisting{../simulink/hw11/mass_ctrl.m}
+
+\ifsolutionmanual
+
+\lstinputlisting{./6_design_studies/_D_mass/python/hw11/massController.py}
+
+\else
+
+\lstinputlisting{../../python/hw11/massController.py}
+
+
+\fi
+
+

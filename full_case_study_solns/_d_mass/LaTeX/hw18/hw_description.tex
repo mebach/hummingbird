@@ -1,0 +1,18 @@
+For this homework assignment we will use the loopshaping design technique to design a controller for the mass spring damper problem with dynamics given by 
+\[
+Z(s) = \left(\frac{\frac{1}{m}}{s^2 + \frac{b}{m}s + \frac{k}{m}}\right) F(s).
+\]
+The controller designed in this problem will take the form
+\[
+	F = C(s)E(s),
+\]
+where the error signal is $e=z^r_f - z$, where $z^r_f$ is the prefiltered reference command.
+Find the controller $C(s)$ so that the closed loop system meets the following specifications.
+\begin{itemize}
+	\item Reject constant input disturbances.
+	\item Track reference signals with frequency content below $\omega_r=0.1$~rad/s to within $\gamma_r=0.03$.
+	  \item Attenuate noise on the measurement of $z$ for all frequencies above $\omega_n=500$~rad/s by $\gamma_n=0.001$.
+	  \item The phase margin is close to $PM=60$~degrees.
+	\item Use a prefilter $F(s)$ to reduce any peaking in the closed loop response.
+	\item Implement a control strategy in simulation using the state space equivalents of $C(s)$ and $F(s)$.
+\end{itemize}

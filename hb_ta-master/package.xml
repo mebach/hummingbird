@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>hb_ta</name>
+  <version>0.0.0</version>
+  <description>TA solutions for the hummingbird labs</description>
+
+  <maintainer email="daniel.p.koch@gmail.com">Daniel Koch</maintainer>
+
+  <license>BSD</license>
+
+  <url type="repository">https://magiccvs.byu.edu/gitlab/hummingbird/hb_ta</url>
+  <url type="bugtracker">https://magiccvs.byu.edu/gitlab/hummingbird/hb_ta/issues</url>
+
+  <author email="daniel.p.koch@gmail.com">Daniel Koch</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>hb_common</depend>
+  <depend>hb_msgs</depend>
+
+</package>

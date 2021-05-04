@@ -1,0 +1,8 @@
+\begin{description} \item[]
+\item[(a)] Modify the state feedback solution developed in Homework~\ref{hw:vtol}.\ref{chap:state-feedback} to add an integrator with anti-windup to the altitude feedback loop and to the position feedback loop.
+\item[(b)] Allow the plant parameters to vary up to 20\% and add a constant input disturbance of $0.1$~Newtons to the input of position dynamics simulating wind.  {\it Hint:  The best place to add the wind force is in the class that implements the dynamics.  For example, one possibility is to modify the $z$ dynamics as 
+
+\texttt{zddot = (-(fr+fl)*sin(theta)+F\_wind)/(P.mc+2*P.mr)}.}
+
+\item[(c)] Tune the integrator poles on both loops (and other gains if necessary) to get good tracking performance.  
+\end{description}

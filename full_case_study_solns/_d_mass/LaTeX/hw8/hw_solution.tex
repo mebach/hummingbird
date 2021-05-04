@@ -1,0 +1,35 @@
+A rise time of $t_r\approx 2$ seconds, implies that the natural frequency is
+\[
+\omega_n = 2.2/2 = 1.1.
+\]
+Therefore, the desired characteristic polynomial is
+\begin{equation}\label{eq:hwd8_1}
+\Delta_{cl}^d = s^2 + 2\zeta\omega_n s + \omega_n^2 = s^2 + 1.54 s + 1.21.
+\end{equation}
+From HW~D.7 the actual closed loop characteristic polynomial is
+\begin{equation}\label{eq:hwd8_2}
+\Delta_{cl}(s) = s^2 + (0.1 + 0.2k_D)s + (0.6 + 0.2k_P).
+\end{equation}
+Equating Equations~\eqref{eq:hwd8_1} and~\eqref{eq:hwd8_2} and solving for the gains gives
+\begin{align*}
+k_P &=  3.05 \\
+k_D &= 7.2.
+\end{align*}
+
+For the gains selected above, we can see that saturation does not occur if we limit the maximimum control force to be 6~N. By lowering the rise time requirement slightly, we get a higher proportional control gain. As it turns out, if $k_P$ is less than or equal to 6, saturation will not occur. For tuning your control design to avoid saturation, you can use a "guess and check" approach by varying the desired rise time and checking to see if saturation occurs in your simulation, or you can follow the more rigorous approach below.
+
+Rather than using the rise time design requirement to choose the proportional gain $k_P$, the gain can instead be chosen using the saturation constraint. At the instant a step of 1~m is applied, there error will be 1~m. If the control force is limited to be 6~N, then the maximum value for the control gain is $k_P = 6$~N/m.
+
+We must now find the value of $k_D$ to ensure $\zeta=0.7$. Recall that the characteristic polynomial for canonical second-order system is given by
+\begin{equation} \label{eq:hwd8_3}
+	\Delta_{\textrm{2nd}}(s) = s^2 + 2 \zeta \omega_n s + \omega_n^2 .
+\end{equation}
+%
+Comparing coefficients of Equations~\eqref{eq:hwd8_3} and~\eqref{eq:hwd8_2}, we find that for $k_P=6$, $\omega_n=\sqrt{1.8}$~rad/s. Equating $s$ coefficients, we have
+\[
+	2(0.7)\sqrt{1.8} = 1.878 = 0.1+0.2 k_D , 
+\]
+giving $k_D = 8.89$.
+
+The code files associated with this problem is included on the wiki associated with the book.
+    

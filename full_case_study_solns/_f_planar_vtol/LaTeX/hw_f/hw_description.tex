@@ -1,0 +1,17 @@
+\begin{description} \item[]
+\item[(a)] {\bf Longitudinal Control:} Using the transfer function model for the VTOL altitude $H(s)/F(s)$, design a lead controller using root-locus methods that achieves a rise time of 8 seconds with closed-loop poles having a damping ratio of 0.7 or greater.
+
+	Design your lead in this form
+	\[
+		KC(s) = K \frac{s/z +1}{s/p+1}
+	\]
+	where $z$ is the lead zero and $p$ is the lead pole. In this form, the DC gain of the lead filter is K, while the DC gain of $C(s)$ is 1. Implement your lead controller in Simulink using the transfer function block and test the response of your system using the full nonlinear dynamics (altitude only, simulation model not linear design model). Use a 0.1~Hz square-wave input with amplitude that ranges between 0.5 and 5.5~m to test your altitude controller.
+	Your design will probably exhibit more overshoot than is desired. How can you alter your lead implementation so that the overshoot is in line with your expectations? Implement this alteration and note the improved transient response and drop in control effort.
+
+\item[(b)] {\bf Lateral Control:} Use successive-loop closure and root-locus methods to design lead compensators for the pitch-angle and position loops for the VTOL system. The control architecture will be similar to the architecture for the PID successive-loop-closure design that you completed earlier. Use lead control to place the pitch-angle poles in locations to give $t_{r_\theta}$<0.8~s with damping ratio $\zeta_{\theta}$>0.7. Calculate the closed-loop transfer function $\theta(s)/\theta_d(s)$ for the inner-loop system.
+
+\item[(c)] Draw the block diagram for the outer-loop ($z$ position) control design using a lead-control transfer function, the inner closed-loop transfer function, and the outer-loop dynamics transfer function from $\theta$ to $z$. Use lead control to place the $z$-position closed-loop poles in locations to give $t_{r_\theta}$<8~s with damping ratio $\zeta_{\theta}$>0.7.
+
+\item[(d)] Implement your successive-loop-control lead designs for the lateral dynamics in Simulink using the full nonlinear dynamics of the system (altitude and translation with simulation model). Use a 0.15~Hz square wave input with amplitude that ranges between 1 and 5~m to test your lateral controller.
+
+\end{description}

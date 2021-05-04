@@ -1,0 +1,11 @@
+The single link robot arm is simulated using the following Python code.
+\lstinputlisting[language=Python, caption=armSim.py]{../control_book_public_solutions/_a_arm/python/hw14/armSim.py}
+Note that in this simulation, the uncertainty parameter is $\alpha=0.2$ implying $20\%$ variation in the plant parameters, and that the noise and disturbance are not zero.
+
+A Python class that implements observer-based control with an integrator and disturbance observer for the single link robot arm is shown below.
+\lstinputlisting[language=Python, caption=armController.py]{../control_book_public_solutions/_a_arm/python/hw14/armController.py}
+
+Python code that computes the control gains is given below.
+\lstinputlisting[language=Python, caption=armParamHW14.py]{../control_book_public_solutions/_a_arm/python/hw14/armParamHW14.py}
+
+Complete simulation code for Matlab, Python, and Simulink can be downloaded at \controlbookurl{http://controlbook.byu.edu}.

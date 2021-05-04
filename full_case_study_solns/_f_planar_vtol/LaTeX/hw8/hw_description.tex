@@ -1,0 +1,12 @@
+For the VTOL system, do the following:
+\begin{description}
+\item[(a)] 
+For the longitudinal (altitude) dynamics of the VTOL, suppose that the design requirements are that the rise time is
+$t_r \approx 8$~seconds, with a damping ratio of $\zeta=0.707$.  Find the desired closed-loop characteristic polynomial $\Delta_{cl}^d(s)$, and the associated pole locations. Find the proportional and derivative gains $k_{P_h}$ and $k_{D_h}$ to achieve these specifications, and modify the computer simulation from HW~\ref{hw:vtol}.\ref{chap:PID-design-specs} to verify that the step response satisfies the requirements.
+\item[(b)] The lateral dynamics (side-to-side) will be designed using successive loop closure with the inner-loop using torque to regulate the roll angle, and the outer-loop using roll angle to regulate the position $z$.  Focusing on the inner loop, find the PD gains $k_{P_\theta}$ and $k_{D_\theta}$ so that the rise time of the inner loop is $t_{r_\theta}=0.8$~seconds, and the damping ratio is $\zeta_{\theta}=0.707$.
+\item[(c)] Find the DC gain $k_{DC_\theta}$ of the inner loop.
+\item[(d)] Replacing the inner loop by its DC-gain, find the PD gains $k_{P_z}$ and $k_{D_z}$ so that the rise time of the outer loop is $t_{r_z}=10 t_{r_\theta}$ and the damping ratio is $\zeta_z=0.707$.
+\item[(e)] Implement the successive loop closure design for the lateral control of the VTOL system where the commanded lateral position is given by a square wave with magnitude $3 \pm 2.5$~meters and frequency $0.08$~Hz.  
+\item[(f)] Suppose that the size of the force on each rotor is constrained by $0\leq f_\ell \leq f_{\max}=10$~N, and $0\leq f_r \leq f_{\max}=10$~N.  Modify the simulation to include saturations on the right and left forces $f_\ell$ and $f_r$.  Using the rise time for the altitude controller, and the rise time for the outer loop of the lateral controller as tuning parameters, tune the controller to achieve the fastest possible response without input saturation.
+\end{description}
+	

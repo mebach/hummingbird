@@ -1,0 +1,54 @@
+%\includepdf[pages=-,scale=.8,pagecommand={}]{notes_soln_g5.pdf}
+Using the expression $F = f_r + f_l$ and $\tau = d (f_r - f_l)$, the equations of motion are given by
+\begin{equation*}
+\begin{pmatrix}
+m_c + 2 m_r & 0           & 0 \\
+0           & m_c + 2 m_r & 0 \\
+0           & 0           & J_c + 2 m_r d^2
+\end{pmatrix}
+\begin{pmatrix}
+\ddot{z} \\
+\ddot{h} \\
+\ddot{\theta}
+\end{pmatrix}
+=
+\begin{pmatrix}
+-F \sin\theta - \mu \dot{z} \\
+-(m_c + 2 m_r) g + F \cos\theta \\
+\tau
+\end{pmatrix}.
+\end{equation*}
+At equilibria when $\dot{z} = \ddot{z} = \dot{h} = \ddot{h} = \dot{\theta} = \ddot{\theta} = 0$ we have
+\begin{align}
+- F_e \sin\theta_e &= 0 \label{Eq:VTOL_EqulibriumConstraint1} \\
+- \left( m_c + 2 m_r\right) g + F_e\cos\theta_e &= 0 \label{Eq:VTOL_EqulibriumConstraint2} \\
+\tau_e &= 0. \label{Eq:VTOL_EqulibriumConstraint3}
+\end{align}
+From Equation~\eqref{Eq:VTOL_EqulibriumConstraint1}, either $\theta_e = 0$ or $F_e = 0$, since $F_e = 0$ would make Equation~\eqref{Eq:VTOL_EqulibriumConstraint2} impossible to satisfy, we conclude that $\theta_e = 0$.
+From \eqref{Eq:VTOL_EqulibriumConstraint1}, $F_e = \left(m_c + 2 m_r\right) g$.
+
+To linearize, define
+\begin{align*}
+\tilde{\theta} \defeq \theta - \theta_e &\qquad \Rightarrow \qquad \theta = \theta_e + \tilde{\theta} \\
+\tilde{F} = F - F_e &\qquad \Rightarrow \qquad F = F_e + \tilde{F}.
+\end{align*}
+In addition
+\begin{align*}
+F \sin\theta &\approx F_e \sin\theta_e + \left. \frac{\partial}{\partial F} \left(F \sin(\theta)\right)\right|_e \tilde{F} + \left. \frac{\partial}{\partial \theta} \left(F \sin(\theta)\right)\right|_e \tilde{\theta} \\
+	&= F_e \sin\theta_e + \sin\theta_e \tilde{F} + F_e \cos\theta_e \tilde{\theta} \\
+	&= F_e \tilde{\theta}
+\end{align*}
+and
+\begin{align*}
+F \cos\theta &\approx F_e \cos\theta_e + \left. \frac{\partial}{\partial F} \left(F \cos\theta\right)\right|_e \tilde{F} + \left. \frac{\partial}{\partial \theta} \left(F \cos\theta\right)\right|_e \tilde{\theta}\\
+	&= F_e \cos\theta_e + \cos\theta_e \tilde{F} - F_e \sin\theta_e \tilde{\theta} \\
+	&= F_e + \tilde{F}.
+\end{align*}
+Therefore, the linear equations of motion are
+\begin{align*}
+\left( m_c + 2 m_r \right) \ddot{\tilde{z}} + \mu \dot{\tilde{z}} &=  -F_e \tilde{\theta}   \\
+\left( m_c + 2 m_r \right) \ddot{\tilde{h}} &= \tilde{F}\\
+\left( J_c + 2 m_r d^2 \right) \ddot{\tilde{\theta}} &= \tilde{\tau}.
+\end{align*}
+
+Since the two nonlinearities are in the equations of motion cannot simultaneously be eliminated by correct choice of the single input $F$, feedback linearization is not a viable option for this system.

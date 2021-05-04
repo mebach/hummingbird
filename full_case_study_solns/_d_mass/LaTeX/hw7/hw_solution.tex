@@ -1,0 +1,61 @@
+
+The open loop transfer function from homework D.6 is
+\[
+Z(s) = \left(\frac{\frac{1}{m}}{s^2+\frac{b}{m}s+\frac{k}{m}}\right)F(s).  
+\]
+Using the parameters from Section~\ref{hw:mass} gives
+\[
+Z(s) = \left(\frac{0.2}{s^2+0.1s+0.6}\right)F(s).  
+\]
+The open loop poles are therefore the roots of the open loop polynomial
+\[
+\Delta_{ol}(s) = s^2+0.1s+0.6,
+\]
+which are given by
+\[
+p_{ol} = -0.05\pm j 0.773.
+\]
+Using PD control, the closed loop system is therefore shown in Figure~\ref{fig:hw_mass_block_diagram_PD}.
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{6_design_studies/figures/hw_mass_block_diagram_PD.pdf}
+   \caption{PD control of the mass spring damper.}
+   \label{fig:hw_mass_block_diagram_PD}
+\end{figure}
+The transfer function of the closed loop system is given by
+\begin{align*}
+& Z(s) = \left(\frac{0.2}{s^2+0.1s+0.6}\right)\left(k_P (Z_r(s)-Z(s)) - k_D s Z(s) \right)  \\
+\implies & (s^2+0.1s+0.6)Z(s) = \left(0.2 k_P (Z_r(s)-Z(s)) - 0.2 k_D s Z(s) \right) \\
+\implies & \left[(s^2+0.1s+0.6)+\left(0.2k_D s +0.2k_P\right)\right]Z(s) = 0.2k_P Z_r(s)  \\
+\implies & \left[s^2 + (0.1 + 0.2k_D)s + (0.6+0.2k_P)\right]Z(s) = 0.2k_P Z_r(s)  \\
+\implies & Z(s) = \frac{0.2k_P}{s^2 + (0.1 + 0.2k_D)s + (0.6+0.2k_P)}Z_r(s). 
+\end{align*}
+Therefore, the closed loop poles are given by the roots of the closed loop characteristic polynomial
+\[
+\Delta_{cl}(s) = s^2 + (0.1 + 0.2k_D)s + (0.6+0.2k_P)
+\]
+which are given by
+\[
+p_{cl} = -\frac{(0.1 + 0.2k_D)}{2} \pm \sqrt{ \left(\frac{(0.1 + 0.2k_D)}{2}\right)^2 - \left(0.6+0.2k_P\right)}
+\]
+If the desired closed loop poles are at $-1$ and $-1.5$, then the desired closed loop characteristic polynomial is
+\begin{align*}
+\Delta_{cl}^d &= (s+1.5)(s+1) \\
+ &= s^2 + 2.5s + 1.5.
+\end{align*}
+Equating the actual closed loop characteristic polynomial $\Delta_{cl}$ with the desired characteristic polynomial $\Delta_{cl}^d$ gives
+\[
+s^2 + (0.1 + 0.2k_D)s + (0.6+0.2k_P) = s^2 + 2.5s + 1.5,
+\]
+or by equating each term we get 
+\begin{align*}
+0.1 + 0.2k_D &=2.5 \\
+0.6 + 0.2k_P &= 1.5.
+\end{align*}
+Solving for $k_P$ and $k_D$ gives
+\begin{align*}
+k_P &= 4.5 \\
+k_D &= 12
+\end{align*}
+
+The Simulink implementation is contained on the wiki associated with this book.

@@ -1,0 +1,6 @@
+The objective of this problem is to implement the PID controller using only measured outputs of the system.
+\begin{description}
+\item[(a)]  Modify the system dynamics file so that the parameters $m_1$, $m_2$, and $\ell$ vary by up to 20\% of their nominal value each time they are run (uncertainty parameter = 0.2).
+\item[(b)]  Change the simulation files so that the input to the controller is the output and not the state.  Implement the nested PID loops in Problems~E.\ref{chap:PID-design-specs} in a separate class.    Use the dirty derivative gain of $\tau=0.05$.  Tune the integrators so that there is no steady state error. The controller should only assume knowledge of the position $z$, the angle $\theta$, and the reference position $z_r$.
+\item[(c)]  Note that the integrator gain will need to be negative which will cause problems for the anti-windup scheme that we have been implementing.  Remove the old anti-windup scheme and implement a new scheme where the integrator only winds up when $|\dot{z}|$ is small. 
+\end{description}

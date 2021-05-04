@@ -1,0 +1,14 @@
+The inverted pendulum is simulated using the following Python code.
+\lstinputlisting[language=Python, caption=pendulumSim.py]{../control_book_public_solutions/_B_pendulum/python/hw13/pendulumSim.py}
+Note in line~38, that the input to the controller is the output $y$ corrupted by noise $n$ and that the input disturbance $d$ has been added to $u$ in line~39.  The dataPlotObserver plots the state $x$ and the estimated state $\hat{x}$, as well as the disturbance $d$ and estimated disturbance $\hat{d}$, as will be discussed in the next chapter.  
+
+A Python class that implements observer-based control with an integrator for the inverted pendulum is shown below.
+\lstinputlisting[language=Python, caption=pendulumController.py]{../control_book_public_solutions/_B_pendulum/python/hw13/pendulumController.py}
+The observer is updated on line~25, and $\hat{x}$ is used in the controller instead of $x$ but otherwise is identical to the controller in Chapter~\ref{chap:state-feedback-integrator}.  The observer is updated on lines~40--48 using the RK4 algorithm.  The differential equations for the observer are specified on lines~50--56.  
+
+Python code that computes the observer and control gains is given below.
+\lstinputlisting[language=Python, caption=pendulumParamHW13.py]{../control_book_public_solutions/_B_pendulum/python/hw13/pendulumParamHW13.py}
+
+Complete simulation code for Matlab, Python, and Simulink can be downloaded at \controlbookurl{http://controlbook.byu.edu}.
+
+

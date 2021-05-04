@@ -1,0 +1,133 @@
+\begin{description}
+\item[Step 1.]
+The original state space equations are 
+\begin{align*}
+\dot{x} &= \begin{pmatrix}
+         0 &        0 &   1.0000 &        0 \\
+         0 &        0 &        0 &   1.0000 \\
+         0 & -18.1923 &        0 &        0 \\
+   -9.8000 &        0 &        0 &        0
+   \end{pmatrix} x + 
+   \begin{pmatrix}  
+         0 \\
+         0 \\
+    2.6519 \\
+         0    
+         \end{pmatrix} u \\
+y_r &= \begin{pmatrix}
+     0  &   1 &    0 &    0
+     \end{pmatrix} x,
+\end{align*}
+therefore the augmented system is
+\begin{align*}
+A_1 &= \begin{pmatrix} A & \mathbf{0} \\ -C & \mathbf{0} \end{pmatrix} 
+	= \begin{pmatrix}
+         0 &        0 &   1.0000 &        0 &        0 \\
+         0 &        0 &        0 &   1.0000 &        0 \\
+         0 & -18.1923 &        0 &        0 &        0 \\
+   -9.8000 &        0 &        0 &        0 &        0 \\
+         0 &  -1.0000 &        0 &        0 &        0   \end{pmatrix} \\
+B_1 &= \begin{pmatrix} B \\ \mathbf{0} \end{pmatrix} 
+	= \begin{pmatrix}
+         0 \\
+         0 \\
+    2.6519 \\
+         0 \\
+         0	 
+   \end{pmatrix}
+\end{align*}
+
+\item[Step 2.] 
+Following the design in HW~\ref{hw:ballbeam}.\ref{chap:state-feedback}, we use the tuning parameters $t_{r_z} = 1.2$, $t_{r_\theta} = 0.5$, $\zeta_z = 0.707$, $\zeta_\theta  = 0.707$. In addition, we will add an integrator pole at $p_I = -5$.
+The new controllability matrix
+\[
+\mathcal{C}_{A_1,B_1} = [B_1, A_1B_1, A_1^2B_1] = \begin{pmatrix} 
+         0 &   2.6519 &        0 &        0 &        0 \\
+         0 &        0 &        0 & -25.9890 &        0 \\
+    2.6519 &        0 &        0 &        0 & 472.7979 \\
+         0 &        0 & -25.9890 &        0 &        0 \\
+         0 &        0 &        0 &        0 &  25.9890
+\end{pmatrix}.
+\]
+The determinant is $det(\mathcal{C}_{A_1,B_1})=-1.2345e+05\neq 0$, therefore the system is controllable.  
+
+The open loop characteristic polynomial
+\begin{align*}
+\Delta_{ol}(s)&=\text{det}(sI-A_1) = \text{det}\begin{pmatrix} 
+         s &        0 &   -1.0000 &        0 &        0 \\
+         0 &        s &        0 &   -1.0000 &        0 \\
+         0 & 18.1923 &        s &        0 &        0 \\
+   9.8000 &        0 &        0 &        s &        0 \\
+         0 &  1.0000 &        0 &        0 &        s
+\end{pmatrix} \\ &= s^5 -178.2842s,
+\end{align*}
+which implies that
+\begin{align*}
+\mathbf{a}_{A_1} &= \begin{pmatrix}
+0 &        0 &        0 & -178.2842 &        0
+\end{pmatrix} \\
+\mathcal{A}_{A_1} &= \begin{pmatrix} 
+1 & 0 & 0 & 0 & -178.2842 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1
+\end{pmatrix}.
+\end{align*}
+
+The desired closed loop polynomial
+\begin{align*}
+\Delta_{cl}^d(s) &= (s^2+2\zeta_z\omega_{n_z}s+\omega_{n_z}^2)(s^2+2\zeta_\theta\omega_{n_\theta}s+\omega_{\theta_z}^2)(s+5)\\
+&=s^5 + 13.8139 s^4 +   82.9192 s^3 +  265.3469 s^2 +  420.5664 s +  325.3556,
+\end{align*} 
+which implies that
+\[
+\boldsymbol{\alpha} = \begin{pmatrix}13.8139, &   82.9192, &  265.3469, &  420.5664, &  325.3556\end{pmatrix}.
+\]
+
+The augmented gains are therefore given as
+\begin{align*}
+K_1 &= (\boldsymbol{\alpha}-\mathbf{a}_{A_1})\mathcal{A}_{A_1}^{-1}\mathcal{C}_{A_1,B_1}^{-1} \\
+  &= \begin{pmatrix} 
+  31.2675 &  -23.0425 &   5.2090 & -10.2100 &  12.5190 
+  \end{pmatrix}
+\end{align*}
+
+\item[Step 3.]
+The feedback gains are therefore given by
+\begin{align*}
+K &= K_1(1:2) = \begin{pmatrix} 
+   31.2675 &  -23.0425 &   5.2090 & -10.2100
+\end{pmatrix} \\
+k_I &= K_1(3) = 12.5190.
+\end{align*}
+
+\end{description}
+
+Alternatively, we could have used the following Python script
+%\iftoggle{soln}{%
+%  \lstinputlisting{simulink_e12/param.m}
+%}{%
+%  \lstinputlisting{./6_design_studies/_E_ballbeam/simulink/hw12/ballbeamParamHW12.m}
+%}
+\ifsolutionmanual
+\lstinputlisting{./6_design_studies/_e_ballbeam/python/hw12/ballbeamParamHW12.py}
+\else
+\lstinputlisting{../../python/hw12/ballbeamParamHW12.py}
+\fi
+
+Python code that implements the associated controller listed below.
+%\iftoggle{soln}{%
+%  \lstinputlisting{simulink_e12/ballbeam_ctrl.m}
+%}{%
+%  \lstinputlisting{./6_design_studies/_E_ballbeam/simulink/hw12/ballbeam_ctrl.m}
+%}
+\ifsolutionmanual
+\lstinputlisting{./6_design_studies/_e_ballbeam/python/hw12/ballBeamController.py}
+\else
+\lstinputlisting{../../python/hw12/ballBeamController.py}
+\fi
+
+
+The complete simulation files are contained on the wiki associated with this book.
+

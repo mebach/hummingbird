@@ -1,0 +1,79 @@
+Starting with the linear state space equations derived in Homework E.5, and solving for $(\ddot{\tilde{z}}, \ddot{\tilde{\theta}})^\top$ gives
+\begin{align*}
+  \ddot{\tilde{z}} &= - g \tilde{\theta} \\
+  \ddot{\tilde{\theta}} &= \frac{l}{\frac{m_2 l^2}{3} + m_1 z_e^2} \tilde{F} - \frac{m_1 g}{\frac{m_2 l^2}{3} + m_1 z_e^2} \tilde{z}.
+\end{align*}
+Defining $\tilde{x} = (\tilde{x}_1, \tilde{x}_2, \tilde{x}_3, \tilde{x}_4)^\top \defeq (\tilde{z}, \tilde{\theta}, \dot{\tilde{z}}, \dot{\tilde{\theta}})^\top$, and $\tilde{u} = \tilde{F}$ gives
+\begin{align*}
+	\dot{\tilde{x}} &\defeq \begin{pmatrix} 
+		\dot{\tilde{x}}_1 \\
+		\dot{\tilde{x}}_2 \\
+		\dot{\tilde{x}}_3 \\
+		\dot{\tilde{x}}_4 \end{pmatrix}
+	= \begin{pmatrix} \dot{\tilde{z}} \\ \dot{\tilde{\theta}} \\ \ddot{\tilde{z}} \\ \ddot{\tilde{\theta}} \end{pmatrix}
+	= \begin{pmatrix} \tilde{x}_3 \\ \tilde{x}_4 \\  - g \tilde{x}_2 \\   \frac{l}{\frac{m_2 l^2}{3} + m_1 z_e^2} \tilde{u} - \frac{m_1 g}{\frac{m_2 l^2}{3} + m_1 z_e^2} \tilde{x}_1  \end{pmatrix} \\
+	&= \begin{pmatrix}
+     0 & 0  & 1 & 0 \\
+     0 & 0  & 0 & 1 \\
+     0 & -g & 0 & 0\\
+    - \frac{m_1 g}{\frac{m_2 l^2}{3} + m_1 z_e^2} & 0 & 0 & 0 \end{pmatrix}
+  \begin{pmatrix}
+    \tilde{x}_1 \\
+    \tilde{x}_2 \\
+    \tilde{x}_3 \\
+    \tilde{x}_4
+  \end{pmatrix}
+  +
+  \begin{pmatrix}
+    0 \\
+    0 \\
+    0 \\
+    \frac{l}{\frac{m_2 l^2}{3} + m_1 z_e^2} 
+  \end{pmatrix} u.
+\end{align*}
+Assuming that the measured output of the system is $\tilde{y}=(\tilde{z}, \tilde{\theta})^\top$, the linearized output is given by
+\[
+  \tilde{y} = \begin{pmatrix} \tilde{z} \\ \tilde{\theta} \end{pmatrix} = \begin{pmatrix} \tilde{x}_1 \\ \tilde{x}_2 \end{pmatrix} =  \begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    \tilde{x}_1 \\
+    \tilde{x}_2 \\
+    \tilde{x}_3 \\
+    \tilde{x}_4
+  \end{pmatrix}
+  +
+  \begin{pmatrix}
+    0 \\
+    0
+  \end{pmatrix} \tilde{u}.
+\]
+
+Therefore, the linear state space equations are given by
+\begin{align*}
+	\dot{\tilde{x}} &= A\tilde{x} + B\tilde{u} \\
+	\tilde{y} &= C\tilde{x} + D\tilde{u},
+\end{align*} 
+where
+\begin{align*}
+A &\defeq \begin{pmatrix}
+     0 & 0  & 1 & 0 \\
+     0 & 0  & 0 & 1 \\
+     0 & -g & 0 & 0\\
+    - \frac{m_1 g}{\frac{m_2 l^2}{3} + m_1 z_e^2} & 0 & 0 & 0 \end{pmatrix} \\
+B &\defeq \begin{pmatrix}
+    0 \\
+    0 \\
+    0 \\
+    \frac{l}{\frac{m_2 l^2}{3} + m_1 z_e^2} 
+  \end{pmatrix} \\
+C &\defeq \begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0
+  \end{pmatrix} \\
+D &\defeq \begin{pmatrix}
+    0 \\
+    0
+  \end{pmatrix}.
+\end{align*}

@@ -1,0 +1,20 @@
+\begin{description}
+\item[(a)] Modify your solution from HW~\ref{hw:vtol}.\ref{chap:observers} so that the uncertainty parameter is $\alpha=0.2$, representing 20\% inaccuracy in the knowledge of the system parameters.  Modify {\tt VTOL\_dynamics} to add an altitude disturbance of $1.0$ and a wind disturbance of $1.0$~m/s.  A Python code snippet that implements these disturbances is given by
+\begin{lstlisting}
+  from math import sin
+  # disturbances
+  wind = 1.0
+  altitude_dist = 1.0
+  
+  # add wind disturbance
+  zdot = zdot + wind
+  
+  zddot = -(fr+fl)*sin(theta)/(mc+2*mr)
+  hddot = (-(mc+2*mr)*g  \ 
+           + (fr+fl)*cos(theta))/(mc+2*mr)  \ 
+           + altitude_dist
+  thetaddot = d*(fr-fl)/(Jc+2*mr*d**2)
+\end{lstlisting}
+Before adding the disturbance observer, run the simulation and note that the controller is not robust to the input disturbance.
+\item[(b)] Add a disturbance observer to both controllers, and verify that the steady state error in the estimator has been removed and that the disturbances have been adequately compensated.  Tune the system to get good response.
+\end{description}

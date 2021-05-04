@@ -1,0 +1,15 @@
+For the mass-spring-damper system, do the following:
+\begin{description}
+\item[(a)]  For the mass-spring-damper system, you are to design a lead controller using root-locus methods to place the closed-loop poles of the system in regions corresponding to a rise time of less than 2.2 seconds and damping ratio greater than 0.7. Your lead controller should be of the form
+\[
+  D_{\text{lead}}(s) = K \left(\frac{s/z_{\text{lead}} + 1}{s/p_{\text{lead}} + 1} \right) .
+\]
+Plot the root-locus of the compensated system with the closed-loop pole locations plotted. Use this lead controller to control your Simulink model. Plot the response of the system.
+
+\item[(b)]  Add lag compensation to your lead controller to reduce the steady-state error to a unit step input to be less than 5 percent. Plot the root locus for your system with lead-lag compensation showing the location of your closed-loop poles. Plot the step response of your system in Simulink. Your compensator should be of this form
+\[
+  D_{\text{lead-lag}}(s) = K \left(\frac{s/z_{\text{lead}} + 1}{s/p_{\text{lead}} + 1}\right)\left(\frac{s/z_{\text{lag}} + 1}{s/p_{\text{lag}} + 1} \right).
+\]
+
+\end{description}
+

@@ -1,0 +1,13 @@
+\begin{description} \item[]
+For the ball-beam system, you will use root-locus methods to analyze and design a PD controller for the outer ball-position loop of the system.
+\item[(a)] Using the gains calculated in homework problem E.8 (for $t_{r_z}$ = 5~sec) for the inner loop ($k_{p_\theta}$, $k_{d_\theta}$), calculate the inner closed-loop transfer function from $\theta_d$ to $\theta$. Draw the block diagram for the outer $z$-position control loop with the inner closed-loop transfer function represented, as well as the transfer function for the dynamics from $\theta$ to $z$, and the transfer function for your outer-loop PD controller. To facilitate your root-locus design, implement your PD control in this form
+    \[
+    	KC(s) = K (s/a +1) ,
+    \]
+	where $a$ is used to shape the locus and $K$ is used to place poles at desired positions along the locus. (Note that $k_{p_z} = K$ and $k_{d_z} = K/a$.)
+	
+\item[(b)] Use root-locus methods to determine suitable values for $K$ and $a$ to ensure that $\zeta_z$ > 0.7 for all closed-loop poles (four of them). Utilize the addition design freedom made available by the root-locus analysis to maximize the speed of the inner-loop poles.
+
+\item[(c)] Implement your root-locus-designed PD controller in Simulink using the successive-loop closure implementation from homework problem E.8 with the outer-loop PD gains replaced by those	designed in part (b) above. Apply a step input of 0.25~m (e.g., from $z$ = 0.125~m to 0.375~m) and observe the response. Is the response of your root-locus design faster that the PD design of homework~E.8?
+
+\end{description}

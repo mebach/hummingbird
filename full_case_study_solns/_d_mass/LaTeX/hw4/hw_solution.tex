@@ -1,0 +1,50 @@
+
+The differential equation describing the mass spring damper derived in HW~\ref{hw:mass}.3 is
+\begin{equation}\label{eq:dm_diff_eq_mass}
+  m \ddot{z} + b \dot{z} + kz = F .
+\end{equation}
+Defining $x=(z, \dot{z})$, and $u=F$ we get
+\begin{align*}
+\dot{x} = \begin{pmatrix} \dot{z} \\ \ddot{z}\end{pmatrix} 
+= \begin{pmatrix} \dot{z} \\ \frac{1}{m}F - \frac{b}{m}\dot{z} - \frac{k}{m}z \end{pmatrix} \defeq f(x,u).
+\end{align*}
+The equilibrium is when $f(x_e,u_e)=0$, or in other words when
+\begin{equation}\label{dm:mass_equilibrium}
+z_e = \text{~anything~}, \qquad \dot{z}_e =0, \qquad F_e = k z_e.
+\end{equation}
+Equivalently, at equilibrium there is no motion in the system, which implies that $\ddot{z}_e = \dot{z}_e=0$, which from Equation~\eqref{eq:dm_diff_eq_mass} implies that $F_e = k z_e$. Any pair $(z_e, F_e)$ satisfying Equation~\eqref{dm:mass_equilibrium} is an equilibria.  
+
+The equations of motion for this system are linear and do not require linearization. With that said, the techniques of feedback linearization can be helpful for systems requiring a non-zero control effort (input) to acheive a specific equilibrium output. In the case of the mass-spring-damper system, a non-zero force is required to hold the mass at any non-zero equilibrium position, due to the spring force generated when the position of the mass is not zero.
+
+% Jacobian linearization then proceeds by replacing each term in the  differential equations describing the system, by the first two terms in the Taylor's series expansion about the equilibrium point.  
+%Defining $\tilde{z}\defeq z-z_e$, $\dot{\tilde{z}}\defeq\dot{z}-\dot{z}_e=\dot{z}$, $\ddot{\tilde{z}}=\ddot{z}-\ddot{z}_e=\ddot{z}$, and $\tilde{F}=F-F_e$, each term in Equation~\eqref{eq:dm_diff_eq_mass} can be expanded about the equilibrium as follows:
+%\begin{align*}
+%m\ddot{z} &= m\ddot{\tilde{z}}, \\
+%kz &\approx k z_e + k\frac{\partial z}{\partial z}
+%\Big|_{e} 
+%(z-z_e) \\
+%&= k z_e + k\tilde{z} \\
+%F &= F_e + \tilde{F} \\
+%b\dot{z} &= b\dot{\tilde{z}}.  
+%\end{align*}
+%Substituting into Equation~\eqref{eq:dm_diff_eq_mass} gives
+%\[
+%m \ddot{\tilde{z}} + b \dot{\tilde{z}} + k \tilde{z} = \tilde{F} .
+%]
+%which are the linearized equations of motion using Jacobian linearization.
+
+%Feedback linearization proceeds by using the feedback linearizing control
+%\begin{equation}\label{eq:mass_feedback_linearization_control}
+%F = k z + \tilde{F}
+%\end{equation}
+%in Equation~\eqref{eq:dm_diff_eq_mass} to cancel the effects of the spring force to obtain the feedback linearized equations of motion
+%\begin{equation}\label{eq:mass_linearized_eom_feedback_linarization}
+%m\ddot{z} + b\dot{z} = \tilde{F} .
+%\end{equation}
+%
+%We will see the benefits of this approach in later homework assignments when we control the position of the mass.
+%
+%The control signal in~\eqref{eq:mass_jacobian_linearization_control} uses the equilibrium position $z_e$ whereas the control signal in~\eqref{eq:mass_feedback_linearization_control} uses the actual position $z$.  For the mass spring damper, in the remainder of the book we suggest using the design model obtained using feedback linearization.
+
+
+

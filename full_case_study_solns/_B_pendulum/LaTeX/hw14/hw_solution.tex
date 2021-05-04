@@ -1,0 +1,11 @@
+The inverted pendulum is simulated using the following Python code.
+\lstinputlisting[language=Python, caption=pendulumSim.py]{../control_book_public_solutions/_B_pendulum/python/hw14/pendulumSim.py}
+Note that in this simulation, the uncertainty parameter is $\alpha=0.2$ implying $20\%$ variation in the plant parameters, and that the noise and disturbance are not zero.
+
+A Python class that implements observer-based control with an integrator and disturbance observer for the inverted pendulum is shown below.
+\lstinputlisting[language=Python, caption=pendulumController.py]{../control_book_public_solutions/_B_pendulum/python/hw14/pendulumController.py}
+
+Python code that computes the observer and control gains is given below.
+\lstinputlisting[language=Python, caption=pendulumParamHW14.py]{../control_book_public_solutions/_B_pendulum/python/hw14/pendulumParamHW14.py}
+
+Complete simulation code for Matlab, Python, and Simulink can be downloaded at \controlbookurl{http://controlbook.byu.edu}.

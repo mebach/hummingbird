@@ -1,0 +1,104 @@
+\begin{description}
+\item[Step 1.]
+The original state space equations are 
+\begin{align*}
+\dot{x} &= \begin{pmatrix}          0 &   1.0000 \\
+   -0.6000 &  -0.1000 \end{pmatrix}x + \begin{pmatrix}  0 \\
+    0.2000 \end{pmatrix} u \\
+y &= \begin{pmatrix}1 & 0 \end{pmatrix}x,
+\end{align*}
+therefore the augmented system is
+\begin{align*}
+A_1 &= \begin{pmatrix} A & \mathbf{0} \\ -C & \mathbf{0} \end{pmatrix} = \begin{pmatrix}  0 &   1.0000 & 0 \\
+   -0.6000 &  -0.1000 & 0  \\ -1 & 0 & 0 \end{pmatrix} \\
+B_1 &= \begin{pmatrix} B \\ \mathbf{0} \end{pmatrix} = \begin{pmatrix} 0 \\ 0.2000 \\ 0 \end{pmatrix}
+\end{align*}
+
+\item[Step 2.] 
+Following the design in HW~\ref{hw:mass}.\ref{chap:state-feedback}, we use the tuning parameters $t_r = 2.5$~seconds and $\zeta = 0.707$.  In addition, we will add an integrator pole at $p_I = -10$.
+The new controllability matrix
+\[
+\mathcal{C}_{A_1,B_1} = [B_1, A_1B_1, A_1^2B_1] = \begin{pmatrix} 
+         0 &   0.2000 &  -0.0200 \\
+    0.2000 &  -0.0200 &  -0.1180 \\
+         0 &        0 &  -0.2000
+\end{pmatrix}.
+\]
+The determinant is $det(\mathcal{C}_{A_1,B_1})=0.0080\neq 0$, therefore the system is controllable.  
+
+The open loop characteristic polynomial
+\begin{align*}
+\Delta_{ol}(s)&=\text{det}(sI-A_1) = \text{det}\begin{pmatrix} 
+        s  &  -1.0000    &     0 \\
+   0.6000  & s+0.1000    &     0 \\
+   1.0000  &       0     &    s \\
+\end{pmatrix} \\ &= s^3 + 0.1000s^2 + 0.6000 s,
+\end{align*}
+which implies that
+\begin{align*}
+\mathbf{a}_{A_1} &= \begin{pmatrix}0.1000, &        0.6,  &       0\end{pmatrix} \\
+\mathcal{A}_{A_1} &= \begin{pmatrix} 
+1 & 0.1 & 0.6 \\ 0 & 1 & 0.1 \\ 0 & 0 & 1
+\end{pmatrix}.
+\end{align*}
+
+The desired closed loop polynomial
+\begin{align*}
+\Delta_{cl}^d(s) &= (s^2+2\zeta\omega_ns+\omega_n^2)(s+10)\\
+&=s^3+11.2443s^2+13.2176s+7.7440,
+\end{align*} 
+which implies that
+\[
+\boldsymbol{\alpha} = \begin{pmatrix}11.2443, &   13.2176, &    7.7440\end{pmatrix}.
+\]
+
+The augmented gains are therefore given as
+\begin{align*}
+K_1 &= (\boldsymbol{\alpha}-\mathbf{a}_{A_1})\mathcal{A}_{A_1}^{-1}\mathcal{C}_{A_1,B_1}^{-1} \\
+  &= \begin{pmatrix} 63.0880, &   55.7216, &  -38.7200 \end{pmatrix}
+\end{align*}
+
+\item[Step 3.]
+The feedback gains are therefore given by
+\begin{align*}
+K &= K_1(1:2) = \begin{pmatrix} 63.0880, &   55.7216 \end{pmatrix} \\
+k_I &= K_1(3) = -38.7200
+\end{align*}
+
+\end{description}
+
+
+% ckp 12/28/20: it looks like this was started to switch solutions between simulink and Matlab.  I have been swapping in all the Python code as I update the solutions.  This would probably be better since it is more versitile.  But, this is the first instance I have seen this, so for now will just go with Python.  On another iteration of cleaning up the solutions will provide a toggle between the three code types we have.
+% 
+%Alternatively, we could have used the following Matlab script
+%\iftoggle{soln}{%
+%  \lstinputlisting{simulink_d12/param.m}
+%}{%
+%  \lstinputlisting{./6_design_studies/_D_mass/simulink/hw12/massParamHW12.m}
+%}
+%
+%Matlab code that implements the associated controller listed below.
+%\iftoggle{soln}{%
+%  \lstinputlisting{simulink_d12/mass_ctrl.m}
+%}{%
+%  \lstinputlisting{./6_design_studies/_D_mass/simulink/hw12/mass_ctrl.m}
+%}
+
+
+Alternatively, we could have used the following Python script
+\ifsolutionmanual
+\lstinputlisting{./6_design_studies/_D_mass/python/hw12/massParamHW12.py}
+\else
+\lstinputlisting{../../python/hw12/massParamHW12.py}
+\fi
+
+Python code that implements the associated controller listed below.
+\ifsolutionmanual
+\lstinputlisting{./6_design_studies/_D_mass/python/hw12/massController.py}
+\else
+\lstinputlisting{../../python/hw12/massController.py}
+\fi
+
+
+The complete simulation files are contained on the wiki associated with this book.
+

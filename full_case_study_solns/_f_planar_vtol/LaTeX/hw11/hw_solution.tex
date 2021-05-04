@@ -1,0 +1,141 @@
+From HW~\ref{hw:vtol}.\ref{chap:state_space_models}, the state space equations for the lateral VTOL dynamics are given by
+\begin{align*}
+\dot{x}_{lat} &= \begin{pmatrix}
+         0 &        0 &   1.0000 &        0 \\
+         0 &        0 &        0 &   1.0000 \\
+         0 &  -9.8100 &  -0.0667 &        0 \\
+         0 &        0 &        0 &        0
+\end{pmatrix} x_{lat} + \begin{pmatrix}
+         0 \\
+         0 \\
+         0 \\
+   20.3252
+\end{pmatrix} u \\
+y &= \begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 
+\end{pmatrix} x_{lat}.
+\end{align*}
+\begin{description}
+\item[Step 1.] 
+The controllability matrix is therefore
+\[
+\mathcal{C}_{A,B} = [B, AB, A^2B, A^3B] = \begin{pmatrix}           
+         0 &        0 &        0 &-199.3902 \\
+         0 &  20.3252 &        0 &        0 \\
+         0 &        0 &-199.3902 &  13.2927 \\
+   20.3252 &        0 &        0 &        0 \end{pmatrix}.
+\]
+The determinant is $\text{det}(\mathcal{C}_{A,B})=-1.63e+7\neq 0$, therefore the system is controllable.  
+\item[Step 2.] The open loop characteristic polynomial is
+\[
+\Delta_{ol}(s)=\text{det}(sI-A) = s^4  + 0.0667s^3
+\]
+which implies that
+\begin{align*}
+\mathbf{a}_A &= (0.0667, 0, 0, 0) \\
+\mathcal{A}_A &= \begin{pmatrix}           
+         1 &  0.0667 &        0 & 0 \\
+         0 &       1 &   0.0667 & 0 \\
+         0 &       0 &        1 &  0.0667 \\
+         0 &       0 &        0 & 1 \end{pmatrix}.
+\end{align*}
+
+\item[Step 3.] When $\omega_\theta = 2.75$, $\zeta_\theta = 0.707$, $\omega_z=0.275$, $\zeta_z=0.707$, the desired closed loop polynomial is
+\begin{align*}
+\Delta_{cl}^d(s) &= (s^2+2\zeta_{\theta}\omega_{n_\theta} s + \omega_{n_\theta}^2)(s^2+2\zeta_{z}\omega_{n_z} s + \omega_{n_z}^2) \\
+&=s^4 + 4.2773 s^3 + 9.1502 s^2 + 3.2347 s + 0.5719       
+\end{align*}
+which implies that
+\[
+\boldsymbol{\alpha} = (4.2773,  9.1502,  3.2347,  0.5719).
+\]
+
+\item[Step 4.]
+The gains are therefore given as
+\begin{align*}
+K_{lat} &= (\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1} \\
+  &= \begin{pmatrix} -0.0029 &   0.4364 &  -0.0133 &   0.2072 \end{pmatrix}
+\end{align*}
+To compute the reference gain $k_r=-1/C_{out}(A-BK)^{-1}B$, we need to use $C_{out}$, the output matrix matching the reference input, which since the desired reference input is $z_r$ and since $x=(z, \theta,\dot{z},\dot{\theta})^{\top}$, we have $C_{out}=(1,0,0,0)$, which gives
+\begin{align*}
+k_{r_{lat}} &= \frac{-1}{C_{out}(A-BK)^{-1}B} \\
+    &= -0.0029.
+\end{align*}
+\end{description}
+
+From HW~\ref{hw:vtol}.\ref{chap:state_space_models}, the state space equations for the longitudinal VTOL dynamics are given by
+\begin{align*}
+\dot{x}_{lon} &= \begin{pmatrix}
+         0 &        1  \\
+         0 &        0 
+\end{pmatrix} x_{lon} + \begin{pmatrix}
+         0 \\
+         0.6667
+\end{pmatrix} u \\
+y &= \begin{pmatrix}
+1 & 0  
+\end{pmatrix} x_{lon}.
+\end{align*}
+\begin{description}
+\item[Step 1.] 
+The controllability matrix is therefore
+\[
+\mathcal{C}_{A,B} = [B, AB] = \begin{pmatrix}           
+         0 &   0.6667 \\
+    0.6667 &        0 \end{pmatrix}.
+\]
+The determinant is $\text{det}(\mathcal{C}_{A,B})=-0.444\neq 0$, therefore the system is controllable.  
+\item[Step 2.] The open loop characteristic polynomial is
+\[
+\Delta_{ol}(s)=\text{det}(sI-A) = s^2
+\]
+which implies that
+\begin{align*}
+\mathbf{a}_A &= (1, 0) \\
+\mathcal{A}_A &= \begin{pmatrix}           
+         1 &   0 \\
+         0 &  1 \end{pmatrix}.
+\end{align*}
+
+\item[Step 3.] When $\omega_h = 0.275$, and $\zeta_h = 0.707$ the desired closed loop polynomial is
+\begin{align*}
+\Delta_{cl}^d(s) &= s^2+2\zeta_{z}\omega_{n_z} s + \omega_{n_z}^2 \\
+&= s^2 + 0.3889 s + 0.0756       
+\end{align*}
+which implies that
+\[
+\boldsymbol{\alpha} = (0.3889,    0.0756).
+\]
+
+\item[Step 4.]
+The gains are therefore given as
+\begin{align*}
+K_{lon} &= (\boldsymbol{\alpha}-\mathbf{a}_A)\mathcal{A}_A^{-1}\mathcal{C}_{A,B}^{-1} \\
+  &= \begin{pmatrix} 0.1134 &  0.5833 \end{pmatrix}
+\end{align*}
+The reference gain $k_r=-1/C(A-BK)^{-1}B$, is
+\begin{align*}
+k_{r_{lat}} &= \frac{-1}{C(A-BK)^{-1}B} \\
+    &= 0.1134.
+\end{align*}
+\end{description}
+
+Alternatively, we could have used the following Matlab script
+%\lstinputlisting{./6_design_studies/_F_planar_VTOL/simulink/hw11/VTOLParamHW11.m}
+%\lstinputlisting{./simulink_f11/param.m}
+\ifsolutionmanual
+\lstinputlisting{./6_design_studies/_f_planar_VTOL/python/hw11/VTOLParamHW11.py}
+\else
+\lstinputlisting{../../python/hw11/VTOLParamHW11.py}
+\fi
+
+
+The Matlab code for the controller is given by
+%\lstinputlisting{./6_design_studies/_F_planar_VTOL/simulink/hw11/VTOL_ctrl.m}
+%\lstinputlisting{./simulink_f11/VTOL_ctrl.m}
+\ifsolutionmanual
+\lstinputlisting{./6_design_studies/_f_planar_VTOL/python/hw11/VTOLController.py}
+\else
+\lstinputlisting{../../python/hw11/VTOLController.py}
+\fi

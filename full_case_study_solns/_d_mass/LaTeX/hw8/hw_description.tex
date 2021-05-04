@@ -1,0 +1,14 @@
+For the mass spring, do the following:
+\begin{description}
+
+\item[(a)]  Suppose that the design requirements are that the rise time is
+$t_r \approx 2$~seconds, with a damping ratio of $\zeta=0.7$.  Find the desired closed loop characteristic polynomial $\Delta_{cl}^d(s)$, and the associated pole locations. Find the proportional and derivative gains $k_P$ and $k_D$ to achieve these specifications, and modify the simulation from HW~\ref{hw:mass}.\ref{chap:PID-pole-placement} to verify that the step response satisfies the requirements.
+
+\item[(b)] Suppose that the size of the input force is limited to $F_{\max}=6$~N.  Modify the simulation to include a saturation block on the force $F$.  Using the rise time $t_r$ as a tuning parameter, tune the PD control gains so that the input just saturates when a step of size of $1$~meter is placed on $z^r$. Plot the step response showing that saturation does not occur for a 1~meter step input for the new control gains.
+
+\end{description}
+
+
+
+
+

@@ -1,0 +1,69 @@
+
+The differential equations describing the inverted derived in HW~\ref{hw:ballbeam}.3 are
+\begin{align}
+m_1 \ddot{z} - m_1 z \dot{\theta}^2 + m_1 g \sin\theta &= 0 
+\label{eq:dm_ballbeam_nonlinear_eq}\\
+\left( \frac{m_2 l^2}{3} + m_1 z^2 \right) \ddot{\theta} + 2 m_1 z \dot{z} \dot{\theta} + m_1 g z \cos\theta + \frac{m_2 g l}{2} \cos\theta &= l F \cos\theta. \notag
+\end{align}
+The equilibria values $(z_e,\theta_e,F_e)$ are found by setting $\dot{z}=\ddot{z}=\dot{\theta}=\ddot{\theta}=0$ in Equation~\eqref{eq:dm_ballbeam_nonlinear_eq} to obtain
+\begin{align}
+m_1 g \sin\theta_e &= 0 \label{eq:dm_ballbeam_equilibria_1}\\
+m_1 g z_e \cos\theta_e + \frac{m_2 g l}{2} \cos\theta_e &=
+l F_e \cos\theta_e.\label{eq:dm_ballbeam_equilibria_2}
+\end{align}
+Therefore, any triple $(z_e, \theta_e, F_e)$ satisfying Equations~\eqref{eq:dm_ballbeam_equilibria_1} and~\eqref{eq:dm_ballbeam_equilibria_2} is an equilibria, or in other words $z_e$ can be any value, $\sin\theta_e=0$ which implies that $\theta_e=0$, and 
+\[
+F_e = \frac{m_1 g}{ l} z_e + \frac{m_2 g}{2}. 
+\]
+
+To linearize around $(z_e, \theta_e, F_e)$ note that
+\begin{align*}
+  z \dot{\theta}^2 &\approx z_e \dot{\theta}_e^2 + \left. \frac{\partial}{\partial z} \left( z \dot{\theta}^2\right)\right|_e \tilde{z} + \left. \frac{\partial}{\partial \dot{\theta}} \left( z \dot{\theta}^2\right)\right|_e \dot{\tilde{\theta}} \\
+    &= z_e \dot{\theta}_e^2 + \dot{\theta}_e^2 \tilde{z} + 2 z_e \dot{\theta}_e \dot{\tilde{\theta}} \\
+	&= 0 \\
+    \\
+  \sin\theta &\approx \sin\theta_e + \left. \frac{\partial}{\partial \theta} \left( \sin\theta \right) \right|_e \tilde{\theta} \\
+    &= \sin\theta_e + \cos\theta_e \tilde{\theta} \\
+    &=   \tilde{\theta} \\
+  \\
+  z \dot{z} \dot{\theta} &\approx z_e \dot{z}_e \dot{\theta}_e + \left. \frac{\partial}{\partial z} \left( z \dot{z} \dot{\theta}\right)\right|_e \tilde{z} + \left. \frac{\partial}{\partial z} \left( z \dot{z} \dot{\theta}\right)\right|_e \dot{\tilde{z}} + \left. \frac{\partial}{\partial z} \left( z \dot{z} \dot{\theta}\right)\right|_e \dot{\tilde{\theta}} \\
+    &= z_e \dot{z}_e \dot{\theta}_e + \dot{z}_e \dot{\theta}_e \tilde{z} + z_e \dot{\theta}_e \dot{\tilde{z}} + z_e \dot{z}_e \dot{\tilde{\theta}} \\
+	&= 0
+    \\
+  z \cos\theta &\approx z_e \cos\theta_e + \left. \frac{\partial}{\partial z} \left( z \cos\theta \right)\right|_e \tilde{z} + \left. \frac{\partial}{\partial \theta} \left( z \cos\theta \right)\right|_e \tilde{\theta} \\
+    &= z_e \cos\theta_e + \cos\theta_e \tilde{z} - z_e \sin\theta_e \tilde{\theta} \\
+	&= z_e + \tilde{z} \\
+    \\
+  \cos\theta &\approx \cos\theta_e +  \left.\frac{\partial}{\partial \theta} \left( \cos\theta \right) \right|_e \tilde{\theta} \\
+  &= \cos\theta_e - \sin\theta_e \tilde{\theta} \\
+  &= 1
+  \\
+  z^2 \ddot{\theta} &\approx z_e^2 \ddot{\theta}_e + \left. \frac{\partial}{\partial z} \left( z^2 \ddot{\theta} \right)\right|_e \tilde{z} + \left. \frac{\partial}{\partial \ddot{\theta}} \left( z^2 \ddot{\theta} \right)\right|_e \ddot{\tilde{\theta}} \\
+    &= z_e^2 \ddot{\theta}_e + 2 z_e \ddot{\theta}_e \tilde{z} + z_e^2 \ddot{\tilde{\theta}} \\
+    &= z_e^2 \ddot{\tilde{\theta}}
+\end{align*}
+where we have defined
+$\tilde{\theta}\defeq\theta-\theta_e$ and $\tilde{z}=z-z_e$.  
+%
+Also defining $\tilde{F}=F-F_e$, and noting that
+\begin{align*}
+\ell F \cos\theta &= \ell F_e \cos\theta_e + \frac{\partial}{\partial F}(\ell F\cos\theta)\Big|_e(F-F_e) + \frac{\partial}{\partial \theta}(\ell F\cos\theta)\Big|_e(\theta-\theta_e) \\
+&= \ell F_e\cos\theta_e + \ell\cos\theta_e \tilde{F} -\ell F_e\sin\theta_e\tilde{\theta} \\
+&= \ell F_e + \ell \tilde{F},
+\end{align*}
+we can write Equation~\eqref{eq:dm_ballbeam_nonlinear_eq}
+in its linearized form as
+\begin{align*}
+m_1 [\ddot{z}_e+\ddot{\tilde{z}}] - m_1 [0] + m_1 g [\tilde{\theta}] &= 0 
+\\
+\left( \frac{m_2 l^2}{3} + m_1 [z_e^2] \right) [\ddot{\tilde{\theta}}] + 2 m_1 [0] + m_1 g [z_e + \tilde{z}] + \frac{m_2 g l}{2} [1] &= l [F_e + \tilde{F}],
+\end{align*}
+which simplifies to
+\begin{align}\label{eq:ballbeam_linearized_eom}
+m_1 \ddot{\tilde{z}} + m_1 g \tilde{\theta} &= 0 \\
+\left( \frac{m_2 l^2}{3} + m_1 z_e^2 \right) \ddot{\tilde{\theta}} + m_1 g \tilde{z} &= l \tilde{F}. \notag
+\end{align}
+which are the linearized equations of motion.
+
+The nonlinearities are not all contained in the control channel and therefore cannot be feedback linearized using the techniques discussed in this book.
+

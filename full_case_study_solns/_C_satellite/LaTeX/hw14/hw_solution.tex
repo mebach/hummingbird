@@ -1,0 +1,21 @@
+The satellite is simulated using the following Python code.
+\lstinputlisting[language=Python, caption=satelliteSim.py]{../control_book_public_solutions/_C_satellite/python/hw14/satelliteSim.py}
+Note that in this simulation, the uncertainty parameter is $\alpha=0.2$ implying $20\%$ variation in the plant parameters, and that the noise and disturbance are not zero.
+
+A Python class that implements observer-based control with an integrator and disturbance observer for the satellite is shown below.
+\lstinputlisting[language=Python, caption=satelliteController.py]{../control_book_public_solutions/_C_satellite/python/hw14/satelliteController.py}
+
+Python code that computes the control gains is given below.
+\lstinputlisting[language=Python, caption=satelliteParamHW14.py]{../control_book_public_solutions/_C_satellite/python/hw14/satelliteParamHW14.py}
+
+Complete simulation code for Matlab, Python, and Simulink can be downloaded at \controlbookurl{http://controlbook.byu.edu}.
+
+
+%A high-level Simulink diagram that implements the observer based controller using output feedback is shown in Figure~\ref{fig:hw13_simulink_satellite}.
+%The Matlab/Simulink code for the controller is listed below.
+%\lstinputlisting[language=Matlab, caption=satellite\_ctrl.m]{../control_book_public_solutions/_C_satellite/simulink/hw14/satellite_ctrl.m}
+%
+%Matlab code that computes the control gains is given below.
+%\lstinputlisting[language=Matlab, caption=satelliteParamHW14.m]{../control_book_public_solutions/_C_satellite/simulink/hw14/satelliteParamHW14.m}
+
+

@@ -1,0 +1,28 @@
+For this homework assignment we will use the loopshaping design technique to design a controller for the VTOL flight control problem.
+\begin{description}
+	\item[(a)] First consider the longitudinal or altitude control problem.  For this part, the force command will be 
+	\[
+	F = F_e + C_{lon}(s)E_h(s),
+	\]
+	where $F_e$ is the equilibrium force as found in other homework problems, and the error signal is $e_h=h^r_f - h_m$, where $h^r_f$ is the prefiltered reference altitude command, and $h_m$ is the measured altitude.
+	Find the longitudinal controller $C_{lon}(s)$ so that the closed loop system meets the following specifications.
+	\begin{itemize}
+		\item Reject constant input disturbances.
+		\item Track reference signals with frequency content below $\omega_r=0.1$~rad/s to within $\gamma_r=0.01$.
+	  	\item Attenuate noise on the measurement of $h$ for all frequencies above $\omega_n=200$~rad/s by $\gamma_n=10^{-4}$.
+	  	\item The phase margin is close to $PM=60$~deg.
+		\item Use a prefilter to improve the closed loop response.
+	\end{itemize}
+	\item[(b)]  Now consider the inner loop of the lateral, or position, dynamics.  Find the inner loop controller $C_{lat_{in}}(s)$ so that the inner loop is stable with phase margin approximately $PM=60$~deg, and with closed loop bandwidth approximately $\omega_{co}=10$~rad/s.  Add a low pass filter to enhance noise rejection.
+	\item[(c)]  For the outer loop of the lateral system, find the controller $C_{lat_{out}}(s)$ to meet the following specifications:
+		\begin{itemize}
+			\item Cross over frequency is around $\omega_{co}=1$~rad/s.
+			\item Reject constant input disturbances.
+			\item Attenuate noise on the measurement of $z$ for all frequencies above $\omega_{no}=100$~rad/s by $\gamma_{no}=10^{-5}$ .
+			\item The phase margin is close to $PM=60$~deg.
+			\item Use a prefilter to reduce overshoot in the step response.
+		\end{itemize}
+	\item[(c)] Implement the developed control strategy in simulation using the state space equivalents of $C(s)$ and $F(s)$. 
+\end{description}
+
+

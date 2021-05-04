@@ -1,0 +1,51 @@
+
+The open-loop transfer function from homework F.5 is
+\[
+\tilde{H}(s) = \left(\frac{\frac{1}{m_c+2m_r}}{s^2}\right)\tilde{F}(s).  
+\]
+Using the parameters from Section~\ref{hw:vtol} gives
+\[
+\tilde{H}(s) = \left(\frac{0.667}{s^2}\right)\tilde{F}(s).  
+\]
+The open-loop poles are therefore the roots of the open loop polynomial
+\[
+\Delta_{ol}(s) = s^2,
+\]
+which are given by
+\[
+p_{ol} = 0, 0.
+\]
+Using PD control, the closed-loop system is therefore shown in Figure~\ref{fig:hw_vtol_PD_altitude}.
+\begin{figure}[H]
+   \centering
+   \includegraphics[width=0.7\textwidth]{6_design_studies/figures/hw_vtol_PD_altitude.pdf}
+   \caption{PD control of the altitude control for the planar VTOL system.}
+   \label{fig:hw_vtol_PD_altitude}
+\end{figure}
+The transfer function of the closed-loop system is given by
+\begin{align*}
+& \tilde{H}(s) = \left(\frac{0.667}{s^2}\right)\left(k_P (\tilde{H}_r(s)-\tilde{H}(s)) - k_D s \tilde{H}(s) \right)  \\
+\implies & (s^2)\tilde{H}(s) = \left(0.667 k_P (\tilde{H}_r(s)-\tilde{H}(s)) - 0.667 k_D s \tilde{H}(s) \right) \\
+\implies & (s^2 + 0.667k_Ds + 0.667k_P)\tilde{H}(s) = 0.667k_P \tilde{H}_r(s)  \\
+\implies & \tilde{H}(s) = \frac{0.667k_P}{s^2 + 0.667k_Ds + 0.667k_P}\tilde{H}_r(s). 
+\end{align*}
+Therefore, the closed-loop poles are given by the roots of the closed-loop characteristic polynomial
+\[
+\Delta_{cl}(s) = s^2 + 0.667k_Ds + 0.667k_P.
+\]
+If the desired closed-loop poles are at $-0.3$ and $-0.2$, then the desired closed loop characteristic polynomial is
+\begin{align*}
+\Delta_{cl}^d &= (s+0.3)(s+0.2) \\
+ &= s^2 + 0.5s + 0.06.
+\end{align*}
+Equating the actual closed-loop characteristic polynomial $\Delta_{cl}$ with the desired characteristic polynomial $\Delta_{cl}^d$ gives
+\[
+s^2 + 0.667k_Ds + 0.667k_P = s^2 + 0.5s + 0.06,
+\]
+or by equating each term we get 
+\begin{align*}
+k_P &= 0.09 \\
+k_D &= 0.75.
+\end{align*}
+
+The Simulink implementation is contained on the wiki associated with this book.

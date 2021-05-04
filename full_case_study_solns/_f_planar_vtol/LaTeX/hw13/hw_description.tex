@@ -1,0 +1,8 @@
+The objective of this problem is to design an observer that estimates the state of the system and to use the estimated state in the controller designed in Homework~\ref{hw:vtol}.\ref{chap:state-feedback-integrator}.
+\begin{description}
+\item[(a)] For the sake of understanding the function of the observer, for this problem we will use exact parameters, without an input disturbance.  Modify the VTOL dynamics so that the parameters known to the controller are the actual plant parameters (uncertainty parameter $\alpha=0$).
+\item[(b)] Verify that the state space system is observable by checking that $\text{rank}(\mathcal{O}_{A,C})=n$.
+\item[(c)] In the control block, add an observer to estimate the state $\hat{x}$, and use the estimate of the state in your feedback controller. Tune the poles of the controller and observer to obtain good performance.  
+\item[(d)] Modify the simulation files so that the controller outputs both $u$ and $\hat{x}$.  Add a plotting routine to plot both the state and the estimated state of the system on the same graph.
+\item[(e)] As motivation for the next chapter, add an input force disturbance to the system of $1.0$ and an input torque disturbance of $0.1$ and observe that there is steady state error in the response even though there is an integrator.  This is caused by a steady state error in the observation error.  In the next chapter we will show how to remove the steady state error in the observation error.
+\end{description}

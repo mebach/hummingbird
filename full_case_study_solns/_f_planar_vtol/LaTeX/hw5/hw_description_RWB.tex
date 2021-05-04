@@ -1,0 +1,11 @@
+For the planar VTOL system, note that the system naturally divides into so-called longitudinal dynamics (up-down motion) with total force $\tilde{F}$ as the input and altitude $h$ as the output, and lateral dynamics (side-to-side motion) with $\tau$ as the input and $z$ as the output, with $\theta$ as an intermediate value.
+
+  \begin{description}
+    \item[(a)] Start with the linearized equations of motion and use the Laplace transform to convert the equations of motion to the s-domain. 
+    \item[(b)] For the longitudinal dynamics, find the transfer matrix from the input $\tilde{F}(s)$ to the output $H(s)$.
+    \item[(c)] For the lateral dynamics, find the transfer function from the input $\tau(s)$ to the outputs $\tilde{Z}(s)$ and $\tilde{\Theta}(s)$.  Identify the fast and slow subsystem.
+    \item[(d)] Find an approximation to the lateral dynamics that is a cascade of a SISO fast system and a SISO slow system, and identify the disturbances that are being ignored.
+    \item[(d)] Argue that the fast-slow cascade approximation makes sense physically.
+    \item[(e)] Draw a block diagram of the open loop longitudinal and lateral systems.
+  \end{description}
+
